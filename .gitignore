@@ -7,3 +7,4 @@ docs/
 .nvmrc
 config/local.js
 jsconfig.json
+ios/build/

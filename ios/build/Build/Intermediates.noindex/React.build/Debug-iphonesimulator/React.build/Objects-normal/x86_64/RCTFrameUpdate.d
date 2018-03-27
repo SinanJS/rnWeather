@@ -1,6 +1,4 @@
 dependencies: \
-  /Users/zhaopengcheng/Desktop/rnWeather/node_modules/react-native/React/Base/RCTFrameUpdate.m \
-  /Users/zhaopengcheng/Desktop/rnWeather/node_modules/react-native/React/Base/RCTFrameUpdate.h \
-  /Users/zhaopengcheng/Desktop/rnWeather/node_modules/react-native/React/Base/RCTUtils.h \
-  /Users/zhaopengcheng/Desktop/rnWeather/node_modules/react-native/React/Base/RCTAssert.h \
-  /Users/zhaopengcheng/Desktop/rnWeather/node_modules/react-native/React/Base/RCTDefines.h
+  /Users/zhaopengcheng/Documents/git_mt/rnWeather/node_modules/react-native/React/Base/RCTFrameUpdate.m \
+  /Users/zhaopengcheng/Documents/git_mt/rnWeather/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/zhaopengcheng/Documents/git_mt/rnWeather/node_modules/react-native/React/Base/RCTUtils.h

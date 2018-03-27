@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/zhaopengcheng/Desktop/rnWeather/node_modules/react-native/ReactCommon/jsinspector/InspectorInterfaces.cpp \
-  /Users/zhaopengcheng/Desktop/rnWeather/node_modules/react-native/ReactCommon/jsinspector/InspectorInterfaces.h
+  /Users/zhaopengcheng/Documents/git_mt/rnWeather/node_modules/react-native/ReactCommon/jsinspector/InspectorInterfaces.cpp \
+  /Users/zhaopengcheng/Documents/git_mt/rnWeather/node_modules/react-native/ReactCommon/jsinspector/InspectorInterfaces.h
