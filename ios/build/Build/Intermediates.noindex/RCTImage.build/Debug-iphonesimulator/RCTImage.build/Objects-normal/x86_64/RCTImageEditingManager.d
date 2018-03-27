@@ -1,0 +1,27 @@
+dependencies: \
+  /Users/zhaopengcheng/Desktop/rnWeather/node_modules/react-native/Libraries/Image/RCTImageEditingManager.m \
+  /Users/zhaopengcheng/Desktop/rnWeather/node_modules/react-native/Libraries/Image/RCTImageEditingManager.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/node_modules/react-native/Libraries/Image/RCTImageLoader.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTResizeMode.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestHandler.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestDelegate.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/node_modules/react-native/Libraries/Image/RCTImageStoreManager.h \
+  /Users/zhaopengcheng/Desktop/rnWeather/node_modules/react-native/Libraries/Image/RCTImageUtils.h

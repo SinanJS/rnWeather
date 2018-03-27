@@ -1,0 +1,9 @@
+*.log
+.DS_Store
+node_modules/
+docs/
+.idea/
+.vscode/
+.nvmrc
+config/local.js
+jsconfig.json
