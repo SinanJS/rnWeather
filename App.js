@@ -5,7 +5,8 @@
  */
 
 import React, { Component } from 'react';
-import Home from './scene/home/home';
+import HomeScreen from './scene/home/home';
+import CityScreen from './scene/city/city';
 import {
   AsyncStorage,
   Platform,
@@ -15,32 +16,43 @@ import {
   Image,
   StatusBar
 } from 'react-native';
+import {
+  StackNavigator,
+} from 'react-navigation';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      weatherInfo: {}
-    };
-  }
-  componentDidMount() {
-    // console.log('1231312')
-  }
+const App = StackNavigator({
+  Main: { screen: CityScreen },
+  Profile: { screen: CityScreen },
+},{
+  headerMode:'float',
+  mode:'card',
+});
+module.exports = App;
+// export default class App extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       weatherInfo: {}
+//     };
+//   }
+//   componentDidMount() {
+//     // console.log('1231312')
+//   }
 
-  setCityId(cityId) {
-    AsyncStorage.setItem('cityId', JSON.stringify(cityId));
-  }
-  render() {
-    const { weatherInfo } = this.state;
-    // this.setCityId(101010100);        
-    this.setCityId(101100402);
-    return (
-      <View>
-          <StatusBar
-            barStyle="light-content"
-          />
-          <Home weatherInfo={weatherInfo} />
-      </View>
-    );
-  }
-}
+//   setCityId(cityId) {
+//     AsyncStorage.setItem('cityId', JSON.stringify(cityId));
+//   }
+//   render() {
+//     const { weatherInfo } = this.state;
+//     // this.setCityId(101010100);        
+//     this.setCityId(101100402);
+//     return (
+//       <View>
+//         <StatusBar
+//           barStyle="light-content"
+//         />
+//         <HomeScreen weatherInfo={weatherInfo} />
+//       </View>
+//     );
+//   }
+// }

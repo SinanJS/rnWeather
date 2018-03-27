@@ -17,9 +17,11 @@ import {
     FlatList,
     View
 } from 'react-native';
+
+
 const styles = StyleSheet.create(style);
 
-export default class App extends Component {
+export default class HomeScreen extends Component {
     constructor(props) {
         super(props);
         this.defaultColors = ['#66a7c7', '#3c90bb', '#166db7'];
@@ -38,6 +40,11 @@ export default class App extends Component {
             w24: []
         };
     }
+    static navigationOptions = {
+        header: null,
+        headerBackTitle: '返回',
+        headerTruncatedBackTitle: '返回'
+    };
     componentDidMount() {
         AsyncStorage.getItem('cityId')
             .then(cityId => {
@@ -198,15 +205,19 @@ export default class App extends Component {
                 return item;
             }
         });
-        console.log('state', this.state)
+        const { navigate } = this.props.navigation;
+        console.log('1212', this.props.navigation);
+        // console.log('state', this.state)
         return (
             <View style={styles.container}>
                 <ScrollView>
                     <Linear colors={this.bgColor(week[0].wfa)} style={styles.weatherHead}>
-                        <Text style={styles.cityTxt}>
+                        <Text style={styles.cityTxt} onPress={() => {
+                            navigate('Profile', { name: "Search" })
+                        }}>
                             {city.c3}
                         </Text>
-                        <Text style={styles.cityTxtPy}>
+                        <Text style={styles.cityTxtPy} >
                             {week[0].wfa}
                         </Text>
                         <View style={styles.wdataToday}>
