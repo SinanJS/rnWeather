@@ -53,7 +53,6 @@ export default class HomeScreen extends Component {
     componentDidMount() {
         // this.setCityId(101010100);
         // this.setCityId(101100402);
-        console.log('xxxxx')
         AsyncStorage.getItem('cityId')
             .then(cityId => {
                 console.log(cityId);

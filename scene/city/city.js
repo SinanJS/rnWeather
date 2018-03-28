@@ -22,7 +22,7 @@ export default class CityScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            testText: '',
+            history: [],
             cityList: [],
         };
         this.timer = null;
@@ -31,12 +31,17 @@ export default class CityScreen extends Component {
         headerTitle: '选择城市',
     };
     componentDidMount() {
-        // console.log('1231312')
+        AsyncStorage.getItem('history')
+            .then(data => {
+                this.setState({
+                    history: JSON.parse(data)
+                });
+            });
     }
-    setCityId(cityId) {
-        AsyncStorage.setItem('cityId', JSON.stringify(cityId));
-        console.log('saved', cityId)
+    setCityId(cityId, cb) {
+        AsyncStorage.setItem('cityId', JSON.stringify(cityId), cb);
     }
+
     getInput(txt) {
         const reg = /^[\u4e00-\u9fa5]+/;
         if (reg.test(txt)) {
@@ -62,25 +67,75 @@ export default class CityScreen extends Component {
             });
         }
     }
+
     getCityList(txt) {
         return fetch(`https://wis.qq.com/city/matching?source=xw&city=${encodeURI(txt)}`)
             .then(res => res.json())
             .then(json => {
-                console.log('city', json);
+                // console.log('city', json);
                 return json.data;
             })
     }
-    handleOnPress(cityId) {
-        this.setCityId(cityId);
+    setHistoryCitys(city, cb) {
+        const { navigate } = this.props.navigation;
+        AsyncStorage.getItem('history')
+            .then(data => {
+                let allow = true;
+                // console.log('data1--->', data);
+                if (!data) {
+                    data = [];
+                } else {
+                    data = JSON.parse(data);
+                }
+
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].id === city.id) {
+                        allow = false;
+                        break;
+                    }
+                }
+                allow && data.unshift(city);
+                if (data.length > 8) {
+                    data.pop();
+                }
+                const str = JSON.stringify(data);
+                AsyncStorage.setItem('history', str)
+                    .then(() => {
+                        navigate('Main');
+                    });
+            });
+    }
+    handleOnPress(city) {
+        this.setCityId(city.id, () => {
+            this.setHistoryCitys(city);
+        });
     }
     render() {
-        const { cityList } = this.state;
+        const { cityList, history } = this.state;
+
         return (
             <View style={sy.container}>
                 <View style={sy.inputBox}>
                     <TextInput style={sy.input} placeholder="搜索市、区、县等" onChangeText={this.getInput.bind(this)} />
                 </View>
-
+                {
+                    cityList.length == 0
+                    &&
+                    <View>
+                        <Text style={sy.title}>搜索历史</Text>
+                        <View style={sy.historyView}>
+                            {
+                                history.map((item, index) => {
+                                    return (
+                                        <TouchableOpacity key={index} style={sy.historyCity} activeOpacity={0.9} onPress={this.handleOnPress.bind(this, item)}>
+                                            <Text style={sy.historyName}>{item.name.split(',').pop()}</Text>
+                                        </TouchableOpacity>
+                                    )
+                                })
+                            }
+                        </View>
+                    </View>
+                }
                 {
                     cityList.length > 0
                     &&
@@ -89,7 +144,7 @@ export default class CityScreen extends Component {
                         data={cityList}
                         renderItem={({ item, index }) => {
                             return (
-                                <TouchableOpacity activeOpacity={0.9} onPress={this.handleOnPress.bind(this, item.id)} style={sy.cityItem}>
+                                <TouchableOpacity activeOpacity={0.9} onPress={this.handleOnPress.bind(this, item)} style={sy.cityItem}>
                                     <Text style={sy.cityName}>
                                         {item.name}
                                     </Text>
@@ -97,7 +152,7 @@ export default class CityScreen extends Component {
                             )
                         }}
                         keyExtractor={(city) => {
-                            return city.id;
+                            return city.id.toString();
                         }}
                     />
                 }
