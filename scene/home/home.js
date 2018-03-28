@@ -15,6 +15,8 @@ import {
     Image,
     ScrollView,
     FlatList,
+    TouchableOpacity,
+    TouchableHighlight,
     View
 } from 'react-native';
 
@@ -45,9 +47,16 @@ export default class HomeScreen extends Component {
         headerBackTitle: '返回',
         headerTruncatedBackTitle: '返回'
     };
+    setCityId(cityId) {
+        AsyncStorage.setItem('cityId', JSON.stringify(cityId));
+    }
     componentDidMount() {
+        // this.setCityId(101010100);
+        // this.setCityId(101100402);
+        console.log('xxxxx')
         AsyncStorage.getItem('cityId')
             .then(cityId => {
+                console.log(cityId);
                 this.getWeatherInfo(cityId)
                     .then(weatherInfo => {
                         const { city, week, today, pminfo, alarminfo, w24 } = weatherInfo;
@@ -205,50 +214,63 @@ export default class HomeScreen extends Component {
                 return item;
             }
         });
+        const alarmColors = new Map();
+        alarmColors.set('蓝色', '#0099FF');
+        alarmColors.set('黄色', '#F1B939');
+        alarmColors.set('橙色', '#E67F22');
+        alarmColors.set('红色', '#E84C3D');
         const { navigate } = this.props.navigation;
-        console.log('1212', this.props.navigation);
-        // console.log('state', this.state)
+        // console.log('1212', this.props.navigation);
+        console.log('state', this.state)
         return (
             <View style={styles.container}>
                 <ScrollView>
                     <Linear colors={this.bgColor(week[0].wfa)} style={styles.weatherHead}>
-                        <Text style={styles.cityTxt} onPress={() => {
-                            navigate('Profile', { name: "Search" })
-                        }}>
-                            {city.c3}
-                        </Text>
+
+                        {
+                            alarminfo.length > 0
+                            &&
+                            <TouchableOpacity activeOpacity={1} style={styles.alarmBox} onPress={() => {
+                                navigate('Alarm', { alarminfo })
+                            }}>
+                                {
+                                    alarminfo.map((item, index) => {
+                                        if (item.w5) {
+                                            return (<View key={index} style={styles.alarm} >
+                                                <Text style={styles.alarmTxt}>
+                                                    {item.w5}{item.w7}预警
+                                                </Text>
+                                                <View style={{ marginRight: 7, borderRadius: 10, backgroundColor: alarmColors.get(item.w7), height: 8, width: 8 }}></View>
+                                            </View>)
+                                        }
+                                        return null;
+                                    })
+                                }
+                            </TouchableOpacity>
+
+                        }
+                        <View style={{ alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Text style={styles.cityTxt} onPress={() => {
+                                navigate('Profile', { name: "Search" })
+                            }}>
+                                {city.c3 || "选择城市"}
+                            </Text>
+                        </View>
                         <Text style={styles.cityTxtPy} >
                             {week[0].wfa}
                         </Text>
                         <View style={styles.wdataToday}>
                             <Text style={styles.todayL1}>
                                 {today.l1 || 'N'}°
-                        </Text>
+                            </Text>
                             <View style={{ alignItems: 'center', marginTop: 10 }}>
-                                <View style={styles.pm}>
+                                <View style={styles[`pm${pminfo['pm-level']}`]}>
                                     <Text style={style.pmTxt}>
                                         {pminfo.grade}  {pminfo.pm}
                                     </Text>
                                 </View>
                             </View>
-                            <View style={{ alignItems: 'center', marginTop: 20, height: 21 }}>
-                                {
-                                    alarminfo.length > 0
-                                    &&
-                                    <View style={styles.alarm}>
-                                        {
-                                            alarminfo.map((item, index) => {
-                                                if (item.w5) {
-                                                    return <Text key={index} style={styles.alarmTxt}>
-                                                        {item.w5}{item.w7}预警
-                                            </Text>
-                                                }
-                                                return null;
-                                            })
-                                        }
-                                    </View>
-                                }
-                            </View>
+
                         </View>
                         <View style={styles.today}>
                             <View>

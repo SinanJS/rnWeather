@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import HomeScreen from './scene/home/home';
 import CityScreen from './scene/city/city';
+import AlarmScreen from './scene/alarm/alarm';
 import {
   AsyncStorage,
   Platform,
@@ -21,8 +22,9 @@ import {
 } from 'react-navigation';
 
 const App = StackNavigator({
-  Main: { screen: CityScreen },
+  Main: { screen: HomeScreen },
   Profile: { screen: CityScreen },
+  Alarm: { screen: AlarmScreen },
 },{
   headerMode:'float',
   mode:'card',

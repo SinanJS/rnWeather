@@ -5,7 +5,8 @@ const style = {
         height: '100%'
     },
     inputBox: {
-
+        borderBottomWidth:1,
+        borderColor:"#BCBCBC",
     },
     input: {
         marginTop: 10,
@@ -16,6 +17,17 @@ const style = {
         fontSize: 15,
         backgroundColor: '#E8E8EA',
         borderRadius: 11
+    },
+    cityItem:{
+       height:40,
+       flexDirection:'row',
+       alignItems:'center',    
+       borderBottomWidth:1,
+       borderColor:"#BCBCBC",
+    },
+    cityName:{
+        color:"#444",
+        fontSize:14,
     }
 };
 module.exports = style;

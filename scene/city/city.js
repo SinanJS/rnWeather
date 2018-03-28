@@ -13,6 +13,8 @@ import {
     View,
     Image,
     StatusBar,
+    FlatList,
+    TouchableOpacity,
     TextInput
 } from 'react-native';
 const sy = StyleSheet.create(style);
@@ -31,6 +33,10 @@ export default class CityScreen extends Component {
     componentDidMount() {
         // console.log('1231312')
     }
+    setCityId(cityId) {
+        AsyncStorage.setItem('cityId', JSON.stringify(cityId));
+        console.log('saved', cityId)
+    }
     getInput(txt) {
         const reg = /^[\u4e00-\u9fa5]+/;
         if (reg.test(txt)) {
@@ -41,16 +47,19 @@ export default class CityScreen extends Component {
                         const cityIdArr = Object.keys(json.internal);
                         const cityList = cityIdArr.map(id => {
                             return {
-                                id,
+                                id: parseInt(id),
                                 name: json.internal[id]
                             }
                         });
                         this.setState({
                             cityList
                         });
-                        console.log('ci', cityList)
                     })
             }, 1000);
+        } else {
+            this.setState({
+                cityList: []
+            });
         }
     }
     getCityList(txt) {
@@ -61,17 +70,36 @@ export default class CityScreen extends Component {
                 return json.data;
             })
     }
+    handleOnPress(cityId) {
+        this.setCityId(cityId);
+    }
     render() {
         const { cityList } = this.state;
         return (
             <View style={sy.container}>
                 <View style={sy.inputBox}>
-                    <TextInput style={sy.input} onChangeText={this.getInput.bind(this)} />
+                    <TextInput style={sy.input} placeholder="搜索市、区、县等" onChangeText={this.getInput.bind(this)} />
                 </View>
+
                 {
-                    cityList.length > 0 && cityList.map(city => {
-                        return <Text key={city.id}>{city.name}</Text>
-                    })
+                    cityList.length > 0
+                    &&
+                    <FlatList
+                        style={{ paddingLeft: 20, paddingRight: 20 }}
+                        data={cityList}
+                        renderItem={({ item, index }) => {
+                            return (
+                                <TouchableOpacity activeOpacity={0.9} onPress={this.handleOnPress.bind(this, item.id)} style={sy.cityItem}>
+                                    <Text style={sy.cityName}>
+                                        {item.name}
+                                    </Text>
+                                </TouchableOpacity>
+                            )
+                        }}
+                        keyExtractor={(city) => {
+                            return city.id;
+                        }}
+                    />
                 }
             </View>
         );

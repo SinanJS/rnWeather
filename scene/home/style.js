@@ -14,10 +14,8 @@ const style = {
         marginBottom: 5,
     },
     weatherHead: {
-        height: 440,
-        // backgroundColor: '#458FBF',
+        height: 420,
         paddingTop: 90,
-
     },
     cityTxt: {
         color: '#fff',
@@ -39,11 +37,41 @@ const style = {
         fontWeight: '100',
         paddingLeft: 25,
     },
-    pm: {
+    pm1: {
         paddingRight: 10,
         paddingLeft: 10,
         borderRadius: 20,
-        backgroundColor: 'rgba(255,255,255,0.5)',
+        backgroundColor: '#3ea50d',
+    },
+    pm2: {
+        paddingRight: 10,
+        paddingLeft: 10,
+        borderRadius: 20,
+        backgroundColor: '#F1B939',
+    },
+    pm3: {
+        paddingRight: 10,
+        paddingLeft: 10,
+        borderRadius: 20,
+        backgroundColor: '#E67F22',
+    },
+    pm4: {
+        paddingRight: 10,
+        paddingLeft: 10,
+        borderRadius: 20,
+        backgroundColor: '#E84C3D',
+    },
+    pm5: {
+        paddingRight: 10,
+        paddingLeft: 10,
+        borderRadius: 20,
+        backgroundColor: '#9A59B5',
+    },
+    pm6: {
+        paddingRight: 10,
+        paddingLeft: 10,
+        borderRadius: 20,
+        backgroundColor: '#52261D',
     },
     pmTxt: {
         color: '#F5F3F4',
@@ -55,18 +83,30 @@ const style = {
         fontWeight: 'bold',
         padding: 2
     },
+    alarmBox: {
+        alignItems: 'flex-start', 
+        marginTop: 20, 
+        position:'absolute',
+        top:30,
+        left:-20
+    },
     alarm: {
-        backgroundColor: '#fff',
-        borderRadius: 20,
-        padding: 2
+        backgroundColor: 'rgba(3,3,3,0.5)',
+        borderRadius:20,
+        marginTop:5,
+        marginBottom:5,
+        flexDirection:'row',
+        paddingLeft:20,
+        alignItems:'center'
     },
     alarmTxt: {
-        color: '#E1A23B',
-        paddingTop: 2,
-        paddingBottom: 2,
+        color: '#fff',
+        paddingTop: 5,
+        paddingBottom: 5,
         paddingLeft: 5,
-        paddingRight: 5,
+        paddingRight: 3,
         textAlign: 'center',
+        fontSize:12
     },
     today: {
         flexDirection: 'row',
@@ -74,7 +114,7 @@ const style = {
         justifyContent: 'space-between',
         paddingLeft: 20,
         paddingRight: 20,
-        marginTop: 60
+        marginTop: 80
     },
     day: {
         color: "#fff",
@@ -131,7 +171,7 @@ const style = {
         color: '#8a9baf',
         textAlign: 'center'
     },
-    du24:{
+    du24: {
         color: '#555',
         textAlign: 'center'
     },
