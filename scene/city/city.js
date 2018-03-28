@@ -25,6 +25,20 @@ export default class CityScreen extends Component {
             history: [],
             cityList: [],
         };
+        this.hotCitys = [
+            { "id": 101010100, "name": "北京, 北京" }, 
+            { "id": 101020100, "name": "上海, 上海" }, 
+            {"id":101280101,"name":"广东, 广州"},           
+            {"id":101280601,"name":"广东, 深圳"},
+            { "id": 101101009, "name": "山西, 忻州, 繁峙" }, 
+            { "id": 101100402, "name": "山西, 晋中, 榆次" }, 
+            { "id": 101120406, "name": "山东, 德州, 乐陵" }, 
+            { "id": 101120401, "name": "山东, 德州" }, 
+            { "id": 101100101, "name": "山西, 太原" },
+            {"id":101190401,"name":"江苏, 苏州"},
+            {"id":101120501,"name":"山东, 烟台"},
+            {"id":101120101,"name":"山东, 济南"},
+        ]
         this.timer = null;
     }
     static navigationOptions = {
@@ -99,6 +113,7 @@ export default class CityScreen extends Component {
                     data.pop();
                 }
                 const str = JSON.stringify(data);
+                console.log(str)
                 AsyncStorage.setItem('history', str)
                     .then(() => {
                         navigate('Main');
@@ -126,6 +141,18 @@ export default class CityScreen extends Component {
                         <View style={sy.historyView}>
                             {
                                 history.map((item, index) => {
+                                    return (
+                                        <TouchableOpacity key={index} style={sy.historyCity} activeOpacity={0.9} onPress={this.handleOnPress.bind(this, item)}>
+                                            <Text style={sy.historyName}>{item.name.split(',').pop()}</Text>
+                                        </TouchableOpacity>
+                                    )
+                                })
+                            }
+                        </View>
+                        <Text style={sy.title}>热门城市</Text>
+                        <View style={sy.historyView}>
+                            {
+                                this.hotCitys.map((item, index) => {
                                     return (
                                         <TouchableOpacity key={index} style={sy.historyCity} activeOpacity={0.9} onPress={this.handleOnPress.bind(this, item)}>
                                             <Text style={sy.historyName}>{item.name.split(',').pop()}</Text>

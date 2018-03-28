@@ -36,7 +36,8 @@ const style = {
     historyView: {
         flexDirection: 'row',
         alignItems: 'flex-start',
-        flexWrap:'wrap'
+        flexWrap:'wrap',
+        paddingLeft:20
     },
     historyCity: {
         backgroundColor: '#E8E8EA',
