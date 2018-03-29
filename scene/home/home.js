@@ -17,6 +17,7 @@ import {
     FlatList,
     TouchableOpacity,
     TouchableHighlight,
+    StatusBar,
     View
 } from 'react-native';
 
@@ -30,8 +31,10 @@ export default class HomeScreen extends Component {
         this.colorsDay = new Map();
         this.colorsNeight = new Map();
         this.colorsDay.set('晴', this.defaultColors);
+        this.colorsDay.set('多云', this.defaultColors);
         this.colorsDay.set('霾', ['#AFACA7', '#807E7F', '#5E5D5B']);
         this.colorsNeight.set('晴', ['#404064', '#393A5A', '#2E2F49']);
+        this.colorsNeight.set('多云', ['#404064', '#393A5A', '#2E2F49']);
         this.colorsNeight.set('霾', ['#AFACA7', '#807E7F', '#5E5D5B']);
         this.state = {
             city: {},
@@ -223,9 +226,9 @@ export default class HomeScreen extends Component {
         console.log('state', this.state)
         return (
             <View style={styles.container}>
+                <StatusBar barStyle="light-content"/>
                 <ScrollView>
                     <Linear colors={this.bgColor(week[0].wfa)} style={styles.weatherHead}>
-
                         {
                             alarminfo.length > 0
                             &&
@@ -246,7 +249,6 @@ export default class HomeScreen extends Component {
                                     })
                                 }
                             </TouchableOpacity>
-
                         }
                         <View style={{ alignItems: 'center', justifyContent: 'space-between' }}>
                             <Text style={styles.cityTxt} onPress={() => {

@@ -26,19 +26,19 @@ export default class CityScreen extends Component {
             cityList: [],
         };
         this.hotCitys = [
-            { "id": 101010100, "name": "北京, 北京" }, 
-            { "id": 101020100, "name": "上海, 上海" }, 
-            {"id":101280101,"name":"广东, 广州"},           
-            {"id":101280601,"name":"广东, 深圳"},
-            { "id": 101101009, "name": "山西, 忻州, 繁峙" }, 
-            { "id": 101100402, "name": "山西, 晋中, 榆次" }, 
-            { "id": 101120406, "name": "山东, 德州, 乐陵" }, 
-            { "id": 101120401, "name": "山东, 德州" }, 
+            { "id": 101010100, "name": "北京, 北京" },
+            { "id": 101020100, "name": "上海, 上海" },
+            { "id": 101280101, "name": "广东, 广州" },
+            { "id": 101280601, "name": "广东, 深圳" },
+            { "id": 101101009, "name": "山西, 忻州, 繁峙" },
+            { "id": 101100402, "name": "山西, 晋中, 榆次" },
+            { "id": 101120406, "name": "山东, 德州, 乐陵" },
+            { "id": 101120401, "name": "山东, 德州" },
             { "id": 101100101, "name": "山西, 太原" },
-            {"id":101190401,"name":"江苏, 苏州"},
-            {"id":101120501,"name":"山东, 烟台"},
-            {"id":101120101,"name":"山东, 济南"},
-        ]
+            { "id": 101190401, "name": "江苏, 苏州" },
+            { "id": 101120501, "name": "山东, 烟台" },
+            { "id": 101120101, "name": "山东, 济南" },
+        ];
         this.timer = null;
     }
     static navigationOptions = {
@@ -47,9 +47,11 @@ export default class CityScreen extends Component {
     componentDidMount() {
         AsyncStorage.getItem('history')
             .then(data => {
-                this.setState({
-                    history: JSON.parse(data)
-                });
+                if (data) {
+                    this.setState({
+                        history: JSON.parse(data)
+                    });
+                }
             });
     }
     setCityId(cityId, cb) {
@@ -130,8 +132,9 @@ export default class CityScreen extends Component {
 
         return (
             <View style={sy.container}>
+                <StatusBar barStyle="default" />
                 <View style={sy.inputBox}>
-                    <TextInput style={sy.input} placeholder="搜索市、区、县等" onChangeText={this.getInput.bind(this)} />
+                    <TextInput autoFocus={true} style={sy.input} placeholder="搜索市、区、县等" onChangeText={this.getInput.bind(this)} />
                 </View>
                 {
                     cityList.length == 0

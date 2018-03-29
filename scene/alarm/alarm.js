@@ -49,13 +49,14 @@ export default class CityScreen extends Component {
         console.log('alarminfo', alarminfo)
         return (
             <View style={sy.container}>
+                <StatusBar barStyle="default"/>
                 {
                     alarminfo.length > 0
                     &&
                     alarminfo.map((item, index) => {
                         return (
                             <View key={index}>
-                                <View style={{ backgroundColor: this.getColor(item.w7), padding: 5, paddingLeft: 10, borderWidth:1,borderColor:this.getColor(item.w7),borderTopLeftRadius: 4, borderTopRightRadius: 4 }}>
+                                <View style={{ backgroundColor: this.getColor(item.w7), padding: 5, paddingLeft: 10, borderWidth: 1, borderColor: this.getColor(item.w7), borderTopLeftRadius: 4, borderTopRightRadius: 4 }}>
                                     <Text style={sy.alarmTitle}>{item.w5}{item.w7}预警</Text>
                                 </View>
                                 <View style={sy.alarmTxtBox}>

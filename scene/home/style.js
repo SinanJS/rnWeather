@@ -88,7 +88,8 @@ const style = {
         marginTop: 20, 
         position:'absolute',
         top:30,
-        left:-20
+        left:-20,
+        zIndex:999
     },
     alarm: {
         backgroundColor: 'rgba(3,3,3,0.5)',

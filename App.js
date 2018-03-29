@@ -15,7 +15,6 @@ import {
   Text,
   View,
   Image,
-  StatusBar
 } from 'react-native';
 import {
   StackNavigator,
