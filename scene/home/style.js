@@ -14,7 +14,7 @@ const style = {
         marginBottom: 5,
     },
     weatherHead: {
-        height: 420,
+        // height: 0,
         paddingTop: 90,
     },
     cityTxt: {
@@ -84,21 +84,21 @@ const style = {
         padding: 2
     },
     alarmBox: {
-        alignItems: 'flex-start', 
-        marginTop: 20, 
-        position:'absolute',
-        top:30,
-        left:-20,
-        zIndex:999
+        alignItems: 'flex-start',
+        marginTop: 20,
+        position: 'absolute',
+        top: 30,
+        left: -20,
+        zIndex: 999
     },
     alarm: {
         backgroundColor: 'rgba(3,3,3,0.5)',
-        borderRadius:20,
-        marginTop:5,
-        marginBottom:5,
-        flexDirection:'row',
-        paddingLeft:20,
-        alignItems:'center'
+        borderRadius: 20,
+        marginTop: 5,
+        marginBottom: 5,
+        flexDirection: 'row',
+        paddingLeft: 20,
+        alignItems: 'center'
     },
     alarmTxt: {
         color: '#fff',
@@ -107,7 +107,7 @@ const style = {
         paddingLeft: 5,
         paddingRight: 3,
         textAlign: 'center',
-        fontSize:12
+        fontSize: 12
     },
     today: {
         flexDirection: 'row',
@@ -115,7 +115,8 @@ const style = {
         justifyContent: 'space-between',
         paddingLeft: 20,
         paddingRight: 20,
-        marginTop: 80
+        marginTop: 30,
+        marginBottom: 10
     },
     day: {
         color: "#fff",
@@ -186,6 +187,18 @@ const style = {
     titleView: {
         borderBottomWidth: 1,
         borderColor: '#D1D1D1',
+    },
+    tipView: {
+        marginTop:30,
+        marginBottom:10,
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    tipTxt: {
+        textAlign: 'center',
+        color: "#fff",
+        fontWeight: 'bold',
+        fontSize: 15
     }
 };
 module.exports = style;

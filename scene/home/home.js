@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import Linear from 'react-native-linear-gradient';
 import style from './style';
+import { loveU } from './love';
 import {
     AsyncStorage,
     Platform,
@@ -226,7 +227,7 @@ export default class HomeScreen extends Component {
         console.log('state', this.state)
         return (
             <View style={styles.container}>
-                <StatusBar barStyle="light-content"/>
+                <StatusBar barStyle="light-content" />
                 <ScrollView>
                     <Linear colors={this.bgColor(week[0].wfa)} style={styles.weatherHead}>
                         {
@@ -271,7 +272,9 @@ export default class HomeScreen extends Component {
                                     </Text>
                                 </View>
                             </View>
-
+                            <View style={styles.tipView}>
+                                <Text style={styles.tipTxt}>{loveU(week[0].wfa)}</Text>
+                            </View>
                         </View>
                         <View style={styles.today}>
                             <View>
