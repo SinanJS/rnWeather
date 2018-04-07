@@ -35,7 +35,7 @@ const weatherJu = {
         '雨林沐风',
         '天凉了，别感冒了🌧',
         '出门多穿点',
-        '适合睡觉',
+        '这个天气适合睡觉哦',
         '宿舍冷不冷',
         '晚上睡觉盖好被纸🌙',
         '起风啦️💨',
@@ -77,9 +77,11 @@ const you = ['熊宝宝', '傻宝宝', '宝宝', '熊宝', '傻宝', '么么哒�
 module.exports = {
     loveU: (weather) => {
         const type = weatherType.get(weather);
-        const w = weatherJu['sun'];
+        const w = weatherJu[type] || [''];
+        console.log('type',w)
         const wIndex = Math.floor(Math.random() * w.length);
         const yIndex = Math.floor(Math.random() * you.length);
+        // return `${w[wIndex]}`;
         return `${you[yIndex]}，${w[wIndex]}`;
     }
 }
