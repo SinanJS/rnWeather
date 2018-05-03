@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import Linear from 'react-native-linear-gradient';
 import style from './style';
 import { loveU } from './love';
+import imgMap from '../../assets/img';
 import {
     AsyncStorage,
     Platform,
@@ -153,44 +154,16 @@ export default class HomeScreen extends Component {
                 return weatherInfo
             });
     }
-    iconMap() {
-        const iconMap = new Map();
-        iconMap.set('中到大雨', require('../../img//中到大雨.png'));
-        iconMap.set('中到大雪', require('../../img//中到大雪.png'));
-        iconMap.set('中雨', require('../../img//中雨.png'));
-        iconMap.set('中雪', require('../../img//中雪.png'));
-        iconMap.set('冰雹', require('../../img//冰雹.png'));
-        iconMap.set('多云', require('../../img//多云.png'));
-        iconMap.set('大到暴雨', require('../../img//大到暴雨.png'));
-        iconMap.set('大到暴雪', require('../../img//大到暴雪.png'));
-        iconMap.set('大雪', require('../../img//大雪.png'));
-        iconMap.set('大雨', require('../../img//大雨.png'));
-        iconMap.set('小到中雪', require('../../img//小到中雪.png'));
-        iconMap.set('小到中雨', require('../../img//小到中雨.png'));
-        iconMap.set('小雨', require('../../img//小雨.png'));
-        iconMap.set('小雪', require('../../img//小雪.png'));
-        iconMap.set('晴', require('../../img//晴.png'));
-        iconMap.set('暴雨', require('../../img//暴雨.png'));
-        iconMap.set('暴雪', require('../../img//暴雪.png'));
-        iconMap.set('阴', require('../../img//阴.png'));
-        iconMap.set('阴转晴', require('../../img//阴转晴.png'));
-        iconMap.set('阵雨', require('../../img//阵雨.png'));
-        iconMap.set('雨夹雪', require('../../img//雨夹雪.png'));
-        iconMap.set('雷阵雨', require('../../img//雷阵雨.png'));
-        iconMap.set('雷雨转晴', require('../../img//雷雨转晴.png'));
-        iconMap.set('雾霾', require('../../img//雾霾.png'));
-        iconMap.set('雾', require('../../img//雾.png'));
-        iconMap.set('霾', require('../../img//霾.png'));
-        return iconMap;
-    }
+    // 
     getIcon(fa) {
-        return `https://mat1.gtimg.com/pingjs/ext2020/weather/pc/icon/weather/day/${fa}.png`
+        return imgMap[fa];
     }
+
     render24H({ item }) {
         return (
             <View style={styles.view24}>
                 <Text style={styles.time24}>{item.h}:00</Text>
-                <Image source={{ uri: `https://mat1.gtimg.com/pingjs/ext2020/weather/pc/icon/weather/day/${item.l5}.png` }} style={{ width: 20, height: 20, marginTop: 10, marginBottom: 10 }} />
+                <Image source={{ uri: this.getIcon(item.l5) }} style={{ width: 20, height: 20, marginTop: 10, marginBottom: 10 }} />
                 <Text style={styles.du24}>{item.l1}°</Text>
             </View>
         )
@@ -208,7 +181,7 @@ export default class HomeScreen extends Component {
     }
     render() {
         const { week, city, today, pminfo, alarminfo, w24 } = this.state;
-        const iconMap = this.iconMap();
+        // const iconMap = this.iconMap();
         const f6d = week.filter((item, index) => {
             if (index === 1) {
                 item.w = '明天';
@@ -309,7 +282,7 @@ export default class HomeScreen extends Component {
                             horizontal={true}
                             showsHorizontalScrollIndicator={false} // 隐藏水平滚动条
                             showsVerticalScrollIndicator={false} // 隐藏竖直滚动条
-                            renderItem={this.render24H}
+                            renderItem={this.render24H.bind(this)}
                             keyExtractor={() => { return Math.floor(Math.random() * 1000000).toString() }}
                         />
                     }
