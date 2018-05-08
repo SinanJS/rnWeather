@@ -123,7 +123,6 @@ export default class HomeScreen extends Component {
                 console.log('fetchErr', err);
                 return err;
             })
-            
     }
     wdataAir(cityId) {
         const time = this.getTime();
