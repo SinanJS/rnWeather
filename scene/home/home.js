@@ -20,9 +20,12 @@ import {
     TouchableOpacity,
     TouchableHighlight,
     StatusBar,
-    View
+    View,
+    Dimensions
 } from 'react-native';
 
+import Echarts from 'native-echarts';
+let { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create(style);
 
@@ -179,6 +182,79 @@ export default class HomeScreen extends Component {
         colors = dataMap.get(wfa) || defaultColors;
         return colors;
     }
+
+    echarts(f6d) {
+        const xAxisData = f6d.map((item)=>{
+            return item.w;
+        });
+        const maxData = f6d.map((item)=>{
+            return item.fc;
+        });
+        const minData = f6d.map((item)=>{
+            return item.fd;
+        });
+        return {
+            tooltip: {
+                trigger: 'axis'
+            },
+
+            xAxis: [
+                {
+                    type: 'category',
+                    boundaryGap: false,
+                    show: false,
+                    data: xAxisData
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    show: false,
+                    axisLabel: {
+                        formatter: '{value} °C'
+                    }
+                }
+            ],
+            color: ['#FEBB67', '#4BC1F1', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
+            series: [
+                {
+                    name: '最高气温',
+                    type: 'line',
+                    data: maxData,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: "{c}°",
+                            textStyle: {
+                                color: '#555'
+                            }
+                        },
+
+                    },
+                    smooth: true
+                },
+                {
+                    name: '最低气温',
+                    type: 'line',
+                    data: minData,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: "{c}°",
+                            textStyle: {
+                                color: '#555'
+                            }
+                        }
+                    },
+                    smooth: true
+                }
+            ]
+        };
+
+    }
+
     render() {
         const { week, city, today, pminfo, alarminfo, w24 } = this.state;
         // const iconMap = this.iconMap();
@@ -190,6 +266,7 @@ export default class HomeScreen extends Component {
                 return item;
             }
         });
+        const eChartsOpt = this.echarts(f6d); 
         const alarmColors = new Map();
         alarmColors.set('蓝色', '#0099FF');
         alarmColors.set('黄色', '#F1B939');
@@ -202,6 +279,7 @@ export default class HomeScreen extends Component {
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <ScrollView>
+
                     <Linear colors={this.bgColor(week[0].wfa)} style={styles.weatherHead}>
                         {
                             alarminfo.length > 0
@@ -230,6 +308,7 @@ export default class HomeScreen extends Component {
                             }}>
                                 {city.c3 || "选择城市"}
                             </Text>
+                            {/* <LocalImg source={{uri: '../../assets/img/00.png'}} style={styles.fdayImag} /> */}
                         </View>
                         <Text style={styles.cityTxtPy} >
                             {week[0].wfa}
@@ -298,7 +377,6 @@ export default class HomeScreen extends Component {
                                             <Text style={style.fdayName} >
                                                 {item.w}
                                             </Text>
-
                                         </View>
                                         <View style={{ alignItems: 'center' }}>
                                             <Image source={{ uri: this.getIcon(item.fa) }} style={styles.fdayImag} />
@@ -308,18 +386,23 @@ export default class HomeScreen extends Component {
                                             <Text style={styles.fdayName}>
                                                 {item.wfa}
                                             </Text>
-                                            <Text style={styles.fdayTemp}>
-                                                {item.fc}°/{item.fd}°
-                                        </Text>
+                                            {/* <Text style={styles.fdayTemp}>
+                                                {item.fc}°
+                                            </Text>
+                                            <Text style={styles.fdayTempLow}>
+                                                {item.fd}°
+                                            </Text> */}
                                         </View>
                                     </View>
                                 )
                             })
                         }
                     </View>
+                    <View style={styles.echarts}>
+                        <Echarts option={eChartsOpt} height={220} />
+                    </View>
                 </ScrollView>
             </View>
         );
     }
 }
-

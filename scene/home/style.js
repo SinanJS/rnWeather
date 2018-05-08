@@ -136,13 +136,13 @@ const style = {
     },
     weekWeather: {
         flexDirection: 'row',
-        height: 200,
+        // height: 200,
         justifyContent: 'space-around',
     },
     fday: {
         // backgroundColor:"#dd4422",
         width: 60,
-        paddingTop: 20
+        paddingTop: 20,
     },
     fdayHead: {
 
@@ -154,6 +154,11 @@ const style = {
     fdayTemp: {
         textAlign: 'center',
         color: '#555',
+        paddingTop: 8
+    },
+    fdayTempLow: {
+        textAlign: 'center',
+        color: '#999',
         paddingTop: 8
     },
     fdayImag: {
@@ -189,8 +194,8 @@ const style = {
         borderColor: '#D1D1D1',
     },
     tipView: {
-        marginTop:30,
-        marginBottom:10,
+        marginTop: 30,
+        marginBottom: 10,
         alignItems: 'center',
         justifyContent: 'space-between'
     },
@@ -199,6 +204,12 @@ const style = {
         color: "#fff",
         fontWeight: 'bold',
         fontSize: 15
+    },
+    echarts: {
+        width: '103%',
+        position: 'relative',
+        left: -6,
+        top: -30
     }
 };
 module.exports = style;
