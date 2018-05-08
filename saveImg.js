@@ -38,10 +38,13 @@ mkdirp(dir, function (err) {
 });
 
 //发送请求
-// for (let i = 0; i < num; i++) {
-//     let url = `http://mat1.gtimg.com/pingjs/ext2020/weather/pc/icon/weather/day/${numFormat(i)}.png`;
-//     download(url, dir, `${numFormat(i)}.png`);
-// }
+function downloadImg(){
+    for (let i = 0; i < num; i++) {
+        let url = `http://mat1.gtimg.com/pingjs/ext2020/weather/pc/icon/weather/night/${numFormat(i)}.png`;
+        download(url, dir, `n-${numFormat(i)}.png`);
+    }
+}
+
 function saveAsBase64() {
     const fileList = fs.readdirSync(dir);
     const json = {};
@@ -56,5 +59,6 @@ function saveAsBase64() {
         });
     });
 }
+// downloadImg();
 saveAsBase64();
 

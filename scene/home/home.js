@@ -159,6 +159,10 @@ export default class HomeScreen extends Component {
     }
     // 
     getIcon(fa) {
+        const now = new Date();
+        if(now.getHours()>18){
+            return imgMap[`n-${fa}`];
+        }
         return imgMap[fa];
     }
 
@@ -183,7 +187,7 @@ export default class HomeScreen extends Component {
         return colors;
     }
 
-    echarts(f6d) {
+    echartsWeek(f6d) {
         const xAxisData = f6d.map((item)=>{
             return item.w;
         });
@@ -241,7 +245,7 @@ export default class HomeScreen extends Component {
                     label: {
                         normal: {
                             show: true,
-                            position: 'top',
+                            position: 'bottom',
                             formatter: "{c}°",
                             textStyle: {
                                 color: '#555'
@@ -266,7 +270,7 @@ export default class HomeScreen extends Component {
                 return item;
             }
         });
-        const eChartsOpt = this.echarts(f6d); 
+        const eChartsOpt = this.echartsWeek(f6d);
         const alarmColors = new Map();
         alarmColors.set('蓝色', '#0099FF');
         alarmColors.set('黄色', '#F1B939');
@@ -279,7 +283,6 @@ export default class HomeScreen extends Component {
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <ScrollView>
-
                     <Linear colors={this.bgColor(week[0].wfa)} style={styles.weatherHead}>
                         {
                             alarminfo.length > 0
