@@ -81,7 +81,7 @@ module.exports = {
         console.log('type',w)
         const wIndex = Math.floor(Math.random() * w.length);
         const yIndex = Math.floor(Math.random() * you.length);
-        return '';
+        return `${w[wIndex]}`;
         // return `${you[yIndex]}，${w[wIndex]}`;
     }
 }

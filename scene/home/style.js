@@ -193,6 +193,13 @@ const style = {
         borderBottomWidth: 1,
         borderColor: '#D1D1D1',
     },
+    infoContanierFirst: {
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        position: 'relative',
+        // top: -30,
+        backgroundColor:'#fff'
+    },
     tipView: {
         marginTop: 30,
         marginBottom: 10,

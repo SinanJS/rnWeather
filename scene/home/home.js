@@ -160,17 +160,21 @@ export default class HomeScreen extends Component {
     // 
     getIcon(fa) {
         const now = new Date();
-        if(now.getHours()>18){
+        if (now.getHours() > 18) {
             return imgMap[`n-${fa}`];
         }
         return imgMap[fa];
     }
 
     render24H({ item }) {
+        let icon = imgMap[item.l5];
+        if (item.h > 18) {
+            icon = imgMap[`n-${item.l5}`];
+        }
         return (
             <View style={styles.view24}>
                 <Text style={styles.time24}>{item.h}:00</Text>
-                <Image source={{ uri: this.getIcon(item.l5) }} style={{ width: 20, height: 20, marginTop: 10, marginBottom: 10 }} />
+                <Image source={{ uri: icon }} style={{ width: 20, height: 20, marginTop: 10, marginBottom: 10 }} />
                 <Text style={styles.du24}>{item.l1}°</Text>
             </View>
         )
@@ -188,13 +192,13 @@ export default class HomeScreen extends Component {
     }
 
     echartsWeek(f6d) {
-        const xAxisData = f6d.map((item)=>{
+        const xAxisData = f6d.map((item) => {
             return item.w;
         });
-        const maxData = f6d.map((item)=>{
+        const maxData = f6d.map((item) => {
             return item.fc;
         });
-        const minData = f6d.map((item)=>{
+        const minData = f6d.map((item) => {
             return item.fd;
         });
         return {
@@ -354,52 +358,56 @@ export default class HomeScreen extends Component {
                             </View>
                         </View>
                     </Linear>
-                    <View style={styles.titleView}>
-                        <Text style={styles.title}>24小时天气</Text>
-                    </View>
-                    {
-                        w24.length > 0 && <FlatList
-                            data={w24}
-                            style={styles.titleView}
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false} // 隐藏水平滚动条
-                            showsVerticalScrollIndicator={false} // 隐藏竖直滚动条
-                            renderItem={this.render24H.bind(this)}
-                            keyExtractor={() => { return Math.floor(Math.random() * 1000000).toString() }}
-                        />
-                    }
-                    <View style={styles.titleView}>
-                        <Text style={styles.title}>未来一周天气</Text>
-                    </View>
-                    <View style={styles.weekWeather}>
+                    <View style={styles.infoContanierFirst}>
+                        {/* <View style={styles.titleView}>
+                            <Text style={styles.title}>24小时天气</Text>
+                        </View> */}
                         {
-                            f6d.map((item, index) => {
-                                return (
-                                    <View key={index} style={styles.fday}>
-                                        <View style={styles.fdayHead}>
-                                            <Text style={style.fdayName} >
-                                                {item.w}
-                                            </Text>
-                                        </View>
-                                        <View style={{ alignItems: 'center' }}>
-                                            <Image source={{ uri: this.getIcon(item.fa) }} style={styles.fdayImag} />
-                                            {/* <Image source={iconMap.get(item.wfa)} style={styles.fdayImag} /> */}
-                                        </View>
-                                        <View style={{ alignItems: 'center', marginTop: 10 }}>
-                                            <Text style={styles.fdayName}>
-                                                {item.wfa}
-                                            </Text>
-                                            {/* <Text style={styles.fdayTemp}>
-                                                {item.fc}°
-                                            </Text>
-                                            <Text style={styles.fdayTempLow}>
-                                                {item.fd}°
-                                            </Text> */}
-                                        </View>
-                                    </View>
-                                )
-                            })
+                            w24.length > 0 && <FlatList
+                                data={w24}
+                                style={styles.titleView}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false} // 隐藏水平滚动条
+                                showsVerticalScrollIndicator={false} // 隐藏竖直滚动条
+                                renderItem={this.render24H.bind(this)}
+                                keyExtractor={() => { return Math.floor(Math.random() * 1000000).toString() }}
+                            />
                         }
+                    </View>
+                    <View style={styles.infoContanier}>
+                        {/* <View style={styles.titleView}>
+                            <Text style={styles.title}>未来一周天气</Text>
+                        </View> */}
+                        <View style={styles.weekWeather}>
+                            {
+                                f6d.map((item, index) => {
+                                    return (
+                                        <View key={index} style={styles.fday}>
+                                            <View style={styles.fdayHead}>
+                                                <Text style={style.fdayName} >
+                                                    {item.w}
+                                                </Text>
+                                            </View>
+                                            <View style={{ alignItems: 'center' }}>
+                                                <Image source={{ uri: this.getIcon(item.fa) }} style={styles.fdayImag} />
+                                                {/* <Image source={iconMap.get(item.wfa)} style={styles.fdayImag} /> */}
+                                            </View>
+                                            <View style={{ alignItems: 'center', marginTop: 10 }}>
+                                                <Text style={styles.fdayName}>
+                                                    {item.wfa}
+                                                </Text>
+                                                {/* <Text style={styles.fdayTemp}>
+                                                    {item.fc}°
+                                                </Text>
+                                                <Text style={styles.fdayTempLow}>
+                                                    {item.fd}°
+                                                </Text> */}
+                                            </View>
+                                        </View>
+                                    )
+                                })
+                            }
+                        </View>
                     </View>
                     <View style={styles.echarts}>
                         <Echarts option={eChartsOpt} height={220} />
